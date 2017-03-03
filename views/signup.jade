@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Регистрация
+  form(onsubmit="signup(this); return false;")
+    input(required=true placeholder="Логин" name="login" type="text")
+    input(required=true placeholder="Пароль" name="password" type="password")
+    button(type="submit") Отправить
