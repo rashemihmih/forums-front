@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-let session = require('../main/session.js');
+let session = require('../main/session');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
