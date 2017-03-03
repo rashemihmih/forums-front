@@ -1,5 +1,5 @@
-let backendUrl = 'http://localhost:8080/api';
-exports.backendUrl = backendUrl;
+let backendUrl = require('../public/javascripts/request').backendUrl;
+let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 exports.post = function (url, data) {
   let xhr = new XMLHttpRequest();
