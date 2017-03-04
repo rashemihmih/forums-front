@@ -1,8 +1,9 @@
 extends layout
 
 block content
+  script(src='/javascripts/_session_bundle.js')
   h1 Добро пожаловать!
   p
-    a(href="/login") Вход
+    a(href='/login') Вход
   p
-    a(href="/signup") Регистрация
+    a(href='/signup') Регистрация

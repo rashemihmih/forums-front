@@ -4,6 +4,7 @@ exports.post = function (url, data) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', exports.backendUrl + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.withCredentials = true;
   try {
     xhr.send(JSON.stringify(data));
   } catch (err) {
@@ -15,6 +16,7 @@ exports.post = function (url, data) {
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
   xhr.open('GET', exports.backendUrl + url, false);
+  xhr.withCredentials = true;
   try {
     xhr.send();
   } catch (err) {
