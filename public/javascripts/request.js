@@ -1,8 +1,8 @@
-exports.backendUrl = 'http://localhost:8080/api';
+let urls = require('./urls');
 
 exports.post = function (url, data) {
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', exports.backendUrl + url, false);
+  xhr.open('POST', urls.backend + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.withCredentials = true;
   try {
@@ -15,7 +15,7 @@ exports.post = function (url, data) {
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', exports.backendUrl + url, false);
+  xhr.open('GET', urls.backend + url, false);
   xhr.withCredentials = true;
   try {
     xhr.send();
