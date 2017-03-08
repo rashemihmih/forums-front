@@ -1,5 +1,5 @@
-let sha256 = require("crypto-js/sha256");
+let sha512 = require("crypto-js/sha512");
 
 module.exports = function (data) {
-  return sha256(data);
+  return sha512(data);
 };
