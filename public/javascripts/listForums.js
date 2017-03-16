@@ -1,13 +1,6 @@
 let request = require('./request');
 let urls = require('./urls');
 
-let html = '';
-
-let addForumToHtml = function (forum) {
-  let title = forum.title;
-  html += `<p><a href='${urls.frontend + '/forum/' + title}'>${title}</a></p>\n`;
-};
-
 let response = request.get('/api/forum/list');
 if (response === undefined) {
   alert('Не удалось загрузить список форумов');
@@ -18,5 +11,9 @@ if (response.code !== 0) {
   alert(response.content);
   return;
 }
-response.content.forEach(addForumToHtml);
+let html = '';
+response.content.forEach(forum => {
+  let title = forum.title;
+  html += `<p><a href='${urls.frontend + '/forum/' + forum.title}'>${forum.title}</a></p>\n`;
+});
 document.getElementById('forums-list').innerHTML = html;

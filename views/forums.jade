@@ -4,7 +4,8 @@ block topscripts
   script(src='/javascripts/_commonSession_bundle.js')
 
 block content
-  div(id="forums-list")
+  include topbar
+  div#forums-list
 
 block scripts
   script(src='/javascripts/_listForums_bundle.js')
