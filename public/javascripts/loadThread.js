@@ -34,7 +34,7 @@ if (posts.content.length === 0) {
   html = 'Пусто'
 } else {
   posts.content.forEach(post => {
-    html += `<p>${post.creationTime} &#35;${post.id}<br>${post.user}:<br>${post.parent === 0 ? '' : '&gt; &#35;' + post.parent + '<br>'}${post.message}</p>\n`;
+    html += `<p>${post.creationTime} &#35;${post.id}<br>${post.parent === 0 ? '' : '&gt; &#35;' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
   });
 }
 document.getElementById('list').innerHTML = html;
