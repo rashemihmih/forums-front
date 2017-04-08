@@ -5,8 +5,21 @@ block topscripts
 
 block content
   include topbar
-  h1= id
+  h1#title= id
+  span Создатель:&nbsp;
+  span#user
+  br
+  span Время создания:&nbsp;
+  span#creation
+  br
+  span Последнее изменение:&nbsp;
+  span#update
+  p
+  div#message
+  hr
+  div#list
   hr
   include pagination
 
 block scripts
+  script(src='/javascripts/_loadThread_bundle.js')
