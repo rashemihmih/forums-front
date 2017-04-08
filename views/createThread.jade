@@ -1,0 +1,16 @@
+extends layout
+
+block topscripts
+  script(src='/javascripts/_commonSession_bundle.js')
+
+block content
+  span#forum(style='display: none')= forum
+  include topbar
+  h1 Новая тема
+  form(onsubmit='createThread(this); return false;')
+    input(required=true placeholder="Название" name="title" type="text")
+    textarea(required=true placeholder="Сообщение" name="message")
+    button(type="submit") Создать
+
+block scripts
+  script(src='/javascripts/_createThread_bundle.js')
