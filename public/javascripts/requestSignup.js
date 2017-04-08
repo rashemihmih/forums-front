@@ -1,11 +1,10 @@
 let request = require("./request");
-let encrypt = require('./encrypt');
 let urls = require('./urls');
 
 window.requestSignup = function (form) {
   let data = {
     login: form.elements['login'].value,
-    password: encrypt(form.elements['password'].value).toString()
+    password: form.elements['password'].value
   };
   let response = request.post('/api/user', data);
   if (response === undefined) {
