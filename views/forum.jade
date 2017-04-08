@@ -5,8 +5,12 @@ block topscripts
 
 block content
   include topbar
-  h1= title
+  h1#title= title
   button.button-outline() Создать тему
-  div#threads-list
+  hr
+  div#list
+  hr
+  include pagination
 
 block scripts
+  script(src='/javascripts/_listThreads_bundle.js')

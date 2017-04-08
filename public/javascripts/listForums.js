@@ -14,6 +14,6 @@ if (response.code !== 0) {
 let html = '';
 response.content.forEach(forum => {
   let title = forum.title;
-  html += `<p><a href='${urls.frontend + '/forum/' + forum.title}'>${forum.title}</a></p>\n`;
+  html += `<p><a href='${urls.frontend + '/forum/' + forum.title + '/page1'}'>${forum.title}</a></p>\n`;
 });
-document.getElementById('forums-list').innerHTML = html;
+document.getElementById('list').innerHTML = html;

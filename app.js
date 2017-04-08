@@ -10,6 +10,7 @@ let login = require('./routes/login');
 let signup = require('./routes/signup');
 let forums = require('./routes/forums');
 let forum = require('./routes/forum');
+let thread = require('./routes/thread');
 
 
 let app = express();
@@ -29,6 +30,7 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/forums', forums);
 app.use('/forum', forum);
+app.use('/thread', thread);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

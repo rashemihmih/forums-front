@@ -5,8 +5,8 @@ block topscripts
 
 block content
   include topbar
-  h1 Форумы
-  div#list
+  h1= id
+  hr
+  include pagination
 
 block scripts
-  script(src='/javascripts/_listForums_bundle.js')
