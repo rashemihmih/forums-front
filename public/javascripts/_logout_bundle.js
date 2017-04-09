@@ -16,7 +16,7 @@ window.logout = function () {
 };
 
 },{"./request":2}],2:[function(require,module,exports){
-let backend = 'http://localhost:8080';
+let backend = 'https://mzforums-backend.herokuapp.com';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
