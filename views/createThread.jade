@@ -8,9 +8,9 @@ block content
   a#forum(href='/forum/' + forum + '/page1')= forum
   h1 Новая тема
   form(onsubmit='createThread(this); return false;')
-    input(required=true placeholder="Название" name="title" type="text" maxlength=100)
-    textarea(required=true placeholder="Сообщение" name="message")
-    button(type="submit") Создать
+    input(required=true placeholder='Название' name='title' type='text' maxlength=100)
+    textarea(required=true placeholder='Сообщение' name='message')
+    button(type='submit') Создать
 
 block scripts
   script(src='/javascripts/_createThread_bundle.js')

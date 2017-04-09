@@ -43,8 +43,8 @@ let request = require("./request");
 
 window.requestLogin = function (form) {
   let data = {
-    login: form.elements['login'].value,
-    password: form.elements['password'].value
+    login: form.elements['login'].value.trim(),
+    password: form.elements['password'].value.trim()
   };
   let response = request.post('/api/session', data);
   if (response === undefined) {

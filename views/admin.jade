@@ -1,0 +1,49 @@
+extends layout
+
+block topscripts
+  script(src='/javascripts/_adminSession_bundle.js')
+
+block content
+  div(align='right')
+    span#username
+    button.button-outline.forums__margin-left(onclick='logout()') Выйти
+  h4 Удалить пользователя
+  form(onsubmit='deleteUser(this); return false;')
+    input(required=true placeholder='Логин пользователя' name='login' type='text' maxlength=50)
+    button.button-outline(type='submit') Удалить пользователя
+    span#deleteUserStatus.forums__margin-left
+  hr
+  h4 Создать форум
+  form(onsubmit='createForum(this); return false;')
+    input(required=true placeholder='Название форума' name='title' type='text' maxlength=50)
+    button.button-outline(type='submit') Создать форум
+    span#createForumStatus.forums__margin-left
+  hr
+  h4 Удалить форум
+  form(onsubmit='deleteForum(this); return false;')
+    input(required=true placeholder='Название форума' name='title' type='text' maxlength=50)
+    button.button-outline(type='submit') Удалить форум
+    span#deleteForumStatus.forums__margin-left
+  hr
+  h4 Переименовать форум
+  form(onsubmit='renameForum(this); return false;')
+    input(required=true placeholder='Название форума' name='oldTitle' type='text' maxlength=50)
+    input(required=true placeholder='Новое название форума' name='newTitle' type='text' maxlength=50)
+    button.button-outline(type='submit') Переименовать форум
+    span#renameForumStatus.forums__margin-left
+  hr
+  h4 Удалить тему
+  form(onsubmit='deleteThread(this); return false;')
+    input(required=true placeholder='№ темы' name='id' type='text' maxlength=50)
+    button.button-outline(type='submit') Удалить тему
+    span#deleteThreadStatus.forums__margin-left
+  hr
+  h4 Удалить пост
+  form(onsubmit='deletePost(this); return false;')
+    input(required=true placeholder='№ поста' name='id' type='text' maxlength=50)
+    button.button-outline(type='submit') Удалить пост
+    span#deletePostStatus.forums__margin-left
+  hr
+
+block scripts
+  script(src='/javascripts/_admin_bundle.js')

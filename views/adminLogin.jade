@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  h1 Вход
+  h1 Панель управления администратора
   form(onsubmit='requestLogin(this); return false;')
     input(required=true placeholder='Логин' name='login' type='text' maxlength=50)
     input(required=true placeholder='Пароль' name='password' type='password')
-    button(type='submit') Войти
+    button(type='submit') Войти в панель управления администратора
 
 block scripts
-  script(src='/javascripts/_login_bundle.js')
+  script(src='/javascripts/_adminLogin_bundle.js')

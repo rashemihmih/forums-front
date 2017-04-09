@@ -4,8 +4,8 @@ let request = require("./request");
 window.createThread = function (form) {
   let thread = {
     forum: document.getElementById('forum').innerHTML,
-    title: form.elements['title'].value,
-    message: form.elements['message'].value
+    title: form.elements['title'].value.trim(),
+    message: form.elements['message'].value.trim()
   };
   let response = request.post('/api/thread', thread);
   if (response === undefined) {

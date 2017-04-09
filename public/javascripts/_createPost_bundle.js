@@ -9,12 +9,12 @@ window.createPost = function (form) {
     form.elements['send'].innerHTML = 'Отправить';
     return;
   }
-  let parent =  parseInt(form.elements['parent'].value, 10);
+  let parent =  parseInt(form.elements['parent'].value.trim(), 10);
   if (isNaN(parent)) {
     parent = 0;
   }
   let post = {
-    message: form.elements['post'].value,
+    message: form.elements['post'].value.trim(),
     threadId: parseInt(document.getElementById('id').innerHTML, 10),
     parent: parent
   };

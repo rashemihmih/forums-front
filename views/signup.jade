@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1 Регистрация
-  form(onsubmit="requestSignup(this); return false;")
-    input(required=true placeholder="Логин" name="login" type="text" maxlength=50)
-    input(required=true placeholder="Пароль" name="password" type="password")
-    button(type="submit") Зарегистрироваться
+  form(onsubmit='requestSignup(this); return false;')
+    input(required=true placeholder='Логин' name='login' type='text' maxlength=50)
+    input(required=true placeholder='Пароль' name='password' type='password')
+    button(type='submit') Зарегистрироваться
 
 block scripts
   script(src='/javascripts/_signup_bundle.js')
