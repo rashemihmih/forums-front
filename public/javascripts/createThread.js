@@ -1,20 +1,19 @@
 let request = require("./request");
-let urls = require('./urls');
 
 window.createThread = function (form) {
-  let data = {
+  let thread = {
     forum: document.getElementById('forum').innerHTML,
     title: form.elements['title'].value,
     message: form.elements['message'].value
   };
-  let response = request.post('/api/thread', data);
+  let response = request.post('/api/thread', thread);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
     return;
   }
   response = JSON.parse(response);
   if (response.code === 0) {
-    location.href = `${urls.frontend}/thread/${response.content.id}/page1`;
+    location.href = `/thread/${response.content.id}/page1`;
   } else {
     alert(response.content);
   }

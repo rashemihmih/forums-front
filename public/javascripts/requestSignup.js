@@ -1,5 +1,4 @@
 let request = require("./request");
-let urls = require('./urls');
 
 window.requestSignup = function (form) {
   let data = {
@@ -13,7 +12,7 @@ window.requestSignup = function (form) {
   }
   response = JSON.parse(response);
   if (response.code === 0) {
-    location.href = urls.frontend + '/forums';
+    location.href = '/forums';
   } else {
     alert(response.content);
   }

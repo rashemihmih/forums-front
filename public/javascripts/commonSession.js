@@ -1,5 +1,4 @@
 let request = require('./request');
-let urls = require('./urls');
 
 let session = request.get('/api/session');
 if (session !== undefined) {
@@ -9,4 +8,4 @@ if (session !== undefined) {
     return;
   }
 }
-location.href = urls.frontend;
+location.href = '/';

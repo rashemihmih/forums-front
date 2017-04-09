@@ -1,8 +1,8 @@
-let urls = require('./urls');
+let backend = 'http://localhost:8080';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', urls.backend + url, false);
+  xhr.open('GET', backend + url, false);
   xhr.withCredentials = true;
   try {
     xhr.send();
@@ -14,7 +14,7 @@ exports.get = function (url) {
 
 exports.post = function (url, data) {
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', urls.backend + url, false);
+  xhr.open('POST', backend + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.withCredentials = true;
   try {
@@ -27,7 +27,7 @@ exports.post = function (url, data) {
 
 exports.delete = function (url, data) {
   let xhr = new XMLHttpRequest();
-  xhr.open('DELETE', urls.backend + url, false);
+  xhr.open('DELETE', backend + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.withCredentials = true;
   try {

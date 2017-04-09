@@ -1,6 +1,6 @@
 let request = require('./request');
-let urls = require('./urls');
-let threadId = parseInt(document.getElementById('title').innerHTML, 10);
+
+let threadId = parseInt(document.getElementById('id').innerHTML, 10);
 let thread = request.get(`/api/thread?id=${threadId}`);
 if (thread === undefined) {
   alert('Не удалось загрузить посты');
@@ -16,6 +16,9 @@ document.getElementById('user').innerHTML = thread.content.user;
 document.getElementById('creation').innerHTML = thread.content.creationTime;
 document.getElementById('update').innerHTML = thread.content.lastUpdate;
 document.getElementById('message').innerHTML = thread.content.message;
+let forumUrl = document.getElementById('forum');
+forumUrl.href = `/forum/${thread.content.forum}/page1`;
+forumUrl.innerHTML = thread.content.forum;
 let page = parseInt(document.getElementById('page').innerHTML, 10);
 let limit = 50;
 let offset = (page - 1) * limit;
@@ -31,10 +34,13 @@ if (posts.code !== 0) {
 }
 let html = '';
 if (posts.content.length === 0) {
-  html = 'Пусто'
+  html = 'Ответов нет'
 } else {
   posts.content.forEach(post => {
     html += `<p>${post.creationTime} &#35;${post.id}<br>${post.parent === 0 ? '' : '&gt; &#35;' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
   });
+}
+if (posts.content.length < limit) {
+  document.getElementById('nextpage').style = 'display: none';
 }
 document.getElementById('list').innerHTML = html;

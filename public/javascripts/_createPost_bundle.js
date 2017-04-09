@@ -1,4 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+let request = require("./request");
+
+window.createPost = function (form) {
+  if (form.noValidate) {
+    form.noValidate = false;
+    form.elements['post'].style = 'display: block';
+    form.elements['send'].innerHTML = 'Отправить';
+    return;
+  }
+  let post = {
+    message: form.elements['post'].value,
+    threadId: parseInt(document.getElementById('id').innerHTML, 10),
+    parent: 0
+  };
+  let response = request.post('/api/post', post);
+  if (response === undefined) {
+    alert('Не удалось получить ответ от сервера');
+    return;
+  }
+  response = JSON.parse(response);
+  if (response.code === 0) {
+    location.reload();
+  } else {
+    alert(response.content);
+  }
+};
+},{"./request":2}],2:[function(require,module,exports){
 let backend = 'http://localhost:8080';
 
 exports.get = function (url) {
@@ -38,25 +65,4 @@ exports.delete = function (url, data) {
   }
   return xhr.responseText;
 };
-},{}],2:[function(require,module,exports){
-let request = require("./request");
-
-window.requestSignup = function (form) {
-  let data = {
-    login: form.elements['login'].value,
-    password: form.elements['password'].value
-  };
-  let response = request.post('/api/user', data);
-  if (response === undefined) {
-    alert('Не удалось получить ответ от сервера');
-    return;
-  }
-  response = JSON.parse(response);
-  if (response.code === 0) {
-    location.href = '/forums';
-  } else {
-    alert(response.content);
-  }
-};
-
-},{"./request":1}]},{},[2]);
+},{}]},{},[1]);

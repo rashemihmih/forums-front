@@ -1,5 +1,4 @@
 let request = require("./request");
-let urls = require('./urls');
 
 window.logout = function () {
   let response = request.delete('/api/session', {});
@@ -9,7 +8,7 @@ window.logout = function () {
   }
   response = JSON.parse(response);
   if (response.code === 0) {
-    location.href = urls.frontend;
+    location.href = '/';
   } else {
     alert(response.content);
   }

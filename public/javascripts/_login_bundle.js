@@ -1,9 +1,9 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-let urls = require('./urls');
+let backend = 'http://localhost:8080';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', urls.backend + url, false);
+  xhr.open('GET', backend + url, false);
   xhr.withCredentials = true;
   try {
     xhr.send();
@@ -15,7 +15,7 @@ exports.get = function (url) {
 
 exports.post = function (url, data) {
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', urls.backend + url, false);
+  xhr.open('POST', backend + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.withCredentials = true;
   try {
@@ -28,7 +28,7 @@ exports.post = function (url, data) {
 
 exports.delete = function (url, data) {
   let xhr = new XMLHttpRequest();
-  xhr.open('DELETE', urls.backend + url, false);
+  xhr.open('DELETE', backend + url, false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.withCredentials = true;
   try {
@@ -38,9 +38,8 @@ exports.delete = function (url, data) {
   }
   return xhr.responseText;
 };
-},{"./urls":3}],2:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 let request = require("./request");
-let urls = require('./urls');
 
 window.requestLogin = function (form) {
   let data = {
@@ -54,14 +53,10 @@ window.requestLogin = function (form) {
   }
   response = JSON.parse(response);
   if (response.code === 0) {
-    location.href = urls.frontend + '/forums';
+    location.href = '/forums';
   } else {
     alert(response.content);
   }
 };
 
-},{"./request":1,"./urls":3}],3:[function(require,module,exports){
-exports.frontend = 'http://localhost:3000';
-exports.backend = 'http://localhost:8080';
-
-},{}]},{},[2]);
+},{"./request":1}]},{},[2]);

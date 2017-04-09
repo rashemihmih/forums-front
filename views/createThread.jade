@@ -4,11 +4,11 @@ block topscripts
   script(src='/javascripts/_commonSession_bundle.js')
 
 block content
-  span#forum(style='display: none')= forum
   include topbar
+  a#forum(href='/forum/' + forum + '/page1')= forum
   h1 Новая тема
   form(onsubmit='createThread(this); return false;')
-    input(required=true placeholder="Название" name="title" type="text")
+    input(required=true placeholder="Название" name="title" type="text" maxlength=100)
     textarea(required=true placeholder="Сообщение" name="message")
     button(type="submit") Создать
 

@@ -7,3 +7,4 @@
 @ call node_modules\.bin\browserify public\javascripts\listThreads.js > public\javascripts\_listThreads_bundle.js
 @ call node_modules\.bin\browserify public\javascripts\loadThread.js > public\javascripts\_loadThread_bundle.js
 @ call node_modules\.bin\browserify public\javascripts\createThread.js > public\javascripts\_createThread_bundle.js
+@ call node_modules\.bin\browserify public\javascripts\createPost.js > public\javascripts\_createPost_bundle.js

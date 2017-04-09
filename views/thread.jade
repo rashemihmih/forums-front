@@ -5,7 +5,11 @@ block topscripts
 
 block content
   include topbar
-  h1#title= id
+  a#forum
+  h1#title
+  span #
+  span#id= id
+  br
   span Создатель:&nbsp;
   span#user
   br
@@ -16,6 +20,10 @@ block content
   span#update
   p
   div#message
+  br
+  form#ass(onsubmit='createPost(this); return false;' novalidate=true)
+    textarea(name='post' required=true placeholder='Сообщение' style='display: none')
+    button#send.button-outline(type='submit') Ответить
   hr
   div#list
   hr
@@ -23,3 +31,4 @@ block content
 
 block scripts
   script(src='/javascripts/_loadThread_bundle.js')
+  script(src='/javascripts/_createPost_bundle.js')
