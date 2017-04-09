@@ -4,13 +4,18 @@ window.createPost = function (form) {
   if (form.noValidate) {
     form.noValidate = false;
     form.elements['post'].style = 'display: block';
+    form.elements['parent'].style = 'display: block';
     form.elements['send'].innerHTML = 'Отправить';
     return;
+  }
+  let parent =  parseInt(form.elements['parent'].value, 10);
+  if (isNaN(parent)) {
+    parent = 0;
   }
   let post = {
     message: form.elements['post'].value,
     threadId: parseInt(document.getElementById('id').innerHTML, 10),
-    parent: 0
+    parent: parent
   };
   let response = request.post('/api/post', post);
   if (response === undefined) {

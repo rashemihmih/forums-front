@@ -7,7 +7,7 @@ block content
   include topbar
   a#forum
   h1#title
-  span #
+  span №
   span#id= id
   br
   span Создатель:&nbsp;
@@ -21,8 +21,9 @@ block content
   p
   div#message
   br
-  form#ass(onsubmit='createPost(this); return false;' novalidate=true)
+  form(onsubmit='createPost(this); return false;' novalidate=true)
     textarea(name='post' required=true placeholder='Сообщение' style='display: none')
+    input(name='parent' required=false placeholder='(Опционально) № сообщения, на которое вы хотите ответить' type='text' style='display: none')
     button#send.button-outline(type='submit') Ответить
   hr
   div#list

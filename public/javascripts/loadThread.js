@@ -37,7 +37,7 @@ if (posts.content.length === 0) {
   html = 'Ответов нет'
 } else {
   posts.content.forEach(post => {
-    html += `<p>${post.creationTime} &#35;${post.id}<br>${post.parent === 0 ? '' : '&gt; &#35;' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
+    html += `<p>${post.creationTime} №${post.id}<br>${post.parent === 0 ? '' : 'В ответ на №' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
   });
 }
 if (posts.content.length < limit) {
