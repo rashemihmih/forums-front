@@ -2,7 +2,7 @@ let request = require('./request');
 
 let response = request.get('/api/forum/list');
 if (response === undefined) {
-  alert('Не удалось загрузить список форумов');
+  alert('Не удалось загрузить список разделов');
   return;
 }
 response = JSON.parse(response);

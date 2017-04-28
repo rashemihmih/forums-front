@@ -13,23 +13,23 @@ block content
     button.button-outline(type='submit') Удалить пользователя
     span#deleteUserStatus.forums__margin-left
   hr
-  h4 Создать форум
+  h4 Создать раздел
   form(onsubmit='createForum(this); return false;')
-    input(required=true placeholder='Название форума' name='title' type='text' maxlength=50)
-    button.button-outline(type='submit') Создать форум
+    input(required=true placeholder='Название раздела' name='title' type='text' maxlength=50)
+    button.button-outline(type='submit') Создать раздел
     span#createForumStatus.forums__margin-left
   hr
-  h4 Удалить форум
+  h4 Удалить раздел
   form(onsubmit='deleteForum(this); return false;')
-    input(required=true placeholder='Название форума' name='title' type='text' maxlength=50)
-    button.button-outline(type='submit') Удалить форум
+    input(required=true placeholder='Название раздела' name='title' type='text' maxlength=50)
+    button.button-outline(type='submit') Удалить раздел
     span#deleteForumStatus.forums__margin-left
   hr
-  h4 Переименовать форум
+  h4 Переименовать раздел
   form(onsubmit='renameForum(this); return false;')
-    input(required=true placeholder='Название форума' name='oldTitle' type='text' maxlength=50)
-    input(required=true placeholder='Новое название форума' name='newTitle' type='text' maxlength=50)
-    button.button-outline(type='submit') Переименовать форум
+    input(required=true placeholder='Название раздела' name='oldTitle' type='text' maxlength=50)
+    input(required=true placeholder='Новое название раздела' name='newTitle' type='text' maxlength=50)
+    button.button-outline(type='submit') Переименовать раздел
     span#renameForumStatus.forums__margin-left
   hr
   h4 Удалить тему

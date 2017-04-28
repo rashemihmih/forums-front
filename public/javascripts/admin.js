@@ -44,7 +44,7 @@ window.createForum = function (form) {
   response = JSON.parse(response);
   form.reset();
   if (response.code === 0) {
-    document.getElementById('createForumStatus').innerHTML = `Форум создан: ${response.content}`;
+    document.getElementById('createForumStatus').innerHTML = `Раздел создан: ${response.content}`;
   } else {
     document.getElementById('createForumStatus').innerHTML = response.content;
   }
@@ -62,7 +62,7 @@ window.deleteForum = function (form) {
   response = JSON.parse(response);
   form.reset();
   if (response.code === 0) {
-    document.getElementById('deleteForumStatus').innerHTML = `Форум удален: ${response.content}`;
+    document.getElementById('deleteForumStatus').innerHTML = `Раздел удален: ${response.content}`;
   } else {
     document.getElementById('deleteForumStatus').innerHTML = response.content;
   }
@@ -81,7 +81,7 @@ window.renameForum = function (form) {
   response = JSON.parse(response);
   form.reset();
   if (response.code === 0) {
-    document.getElementById('renameForumStatus').innerHTML = `Форум переименован: ${response.content}`;
+    document.getElementById('renameForumStatus').innerHTML = `Раздел переименован: ${response.content}`;
   } else {
     document.getElementById('renameForumStatus').innerHTML = response.content;
   }
