@@ -9,13 +9,10 @@ window.createPost = function (form) {
     form.elements['send'].innerHTML = 'Отправить';
     return;
   }
-  let parent =  parseInt(form.elements['parent'].value.trim(), 10);
-  if (isNaN(parent)) {
-    parent = 0;
-  }
+  let parent = form.elements['parent'].value.trim();
   let post = {
     message: form.elements['post'].value.trim(),
-    threadId: parseInt(document.getElementById('id').innerHTML, 10),
+    threadId: document.getElementById('id').innerHTML,
     parent: parent
   };
   let response = request.post('/api/post', post);
