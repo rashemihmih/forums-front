@@ -89,7 +89,7 @@ window.renameForum = function (form) {
 
 window.deleteThread = function (form) {
   let payload = {
-    id: form.elements['id'].value.trim(),
+    _id: form.elements['id'].value.trim(),
   };
   let response = request.delete('/admin/thread', payload);
   if (response === undefined) {
@@ -107,7 +107,7 @@ window.deleteThread = function (form) {
 
 window.deletePost = function (form) {
   let payload = {
-    id: form.elements['id'].value.trim(),
+      _id: form.elements['id'].value.trim(),
   };
   let response = request.delete('/admin/post', payload);
   if (response === undefined) {

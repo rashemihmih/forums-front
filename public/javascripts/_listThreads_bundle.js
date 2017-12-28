@@ -21,7 +21,7 @@ if (threads.content.length === 0) {
 } else {
   threads.content.forEach(thread => {
     let title = thread.title;
-    html += `<p><a href="${'/thread/' + thread.id + '/page1'}">${thread.title}</a></p>\n`;
+    html += `<p><a href="${'/thread/' + thread._id + '/page1'}">${thread.title}</a></p>\n`;
   });
 }
 if (threads.content.length < limit) {
@@ -30,7 +30,7 @@ if (threads.content.length < limit) {
 document.getElementById('list').innerHTML = html;
 
 },{"./request":2}],2:[function(require,module,exports){
-let backend = 'https://mzforums-backend.herokuapp.com';
+let backend = 'https://mzforums-backend-js.herokuapp.com';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();

@@ -14,14 +14,14 @@ window.createThread = function (form) {
   }
   response = JSON.parse(response);
   if (response.code === 0) {
-    location.href = `/thread/${response.content.id}/page1`;
+    location.href = `/thread/${response.content._id}/page1`;
   } else {
     alert(response.content);
   }
 };
 
 },{"./request":2}],2:[function(require,module,exports){
-let backend = 'https://mzforums-backend.herokuapp.com';
+let backend = 'https://mzforums-backend-js.herokuapp.com';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();

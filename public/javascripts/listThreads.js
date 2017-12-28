@@ -20,7 +20,7 @@ if (threads.content.length === 0) {
 } else {
   threads.content.forEach(thread => {
     let title = thread.title;
-    html += `<p><a href="${'/thread/' + thread.id + '/page1'}">${thread.title}</a></p>\n`;
+    html += `<p><a href="${'/thread/' + thread._id + '/page1'}">${thread.title}</a></p>\n`;
   });
 }
 if (threads.content.length < limit) {

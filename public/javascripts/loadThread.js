@@ -1,7 +1,7 @@
 let request = require('./request');
 
 let threadId = parseInt(document.getElementById('id').innerHTML, 10);
-let thread = request.get(`/api/thread?id=${threadId}`);
+let thread = request.get(`/api/thread?_id=${threadId}`);
 if (thread === undefined) {
   alert('Не удалось загрузить посты');
   return;
@@ -37,7 +37,7 @@ if (posts.content.length === 0) {
   html = 'Ответов нет'
 } else {
   posts.content.forEach(post => {
-    html += `<p>${post.creationTime} №${post.id}<br>${post.parent === 0 ? '' : 'В ответ на №' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
+    html += `<p>${post.creationTime} №${post._id}<br>${post.parent === 0 ? '' : 'В ответ на №' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
   });
 }
 if (posts.content.length < limit) {

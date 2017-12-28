@@ -90,7 +90,7 @@ window.renameForum = function (form) {
 
 window.deleteThread = function (form) {
   let payload = {
-    id: form.elements['id'].value.trim(),
+    _id: form.elements['id'].value.trim(),
   };
   let response = request.delete('/admin/thread', payload);
   if (response === undefined) {
@@ -108,7 +108,7 @@ window.deleteThread = function (form) {
 
 window.deletePost = function (form) {
   let payload = {
-    id: form.elements['id'].value.trim(),
+      _id: form.elements['id'].value.trim(),
   };
   let response = request.delete('/admin/post', payload);
   if (response === undefined) {
@@ -124,7 +124,7 @@ window.deletePost = function (form) {
   }
 };
 },{"./request":2}],2:[function(require,module,exports){
-let backend = 'https://mzforums-backend.herokuapp.com';
+let backend = 'https://mzforums-backend-js.herokuapp.com';
 
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
