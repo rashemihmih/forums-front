@@ -38,7 +38,7 @@ if (posts.content.length === 0) {
   html = 'Ответов нет'
 } else {
   posts.content.forEach(post => {
-    html += `<p>${post.creationTime} №${post._id}<br>${post.parent === '' ? '' : 'В ответ на №' + post.parent + '<br>'}${post.user}:<br>${post.message}</p>\n`;
+    html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply(this);">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
   });
 }
 if (posts.content.length < limit) {

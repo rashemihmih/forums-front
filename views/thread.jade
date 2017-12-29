@@ -21,7 +21,7 @@ block content
   p
   div#message
   br
-  form(onsubmit='createPost(this); return false;' novalidate=true)
+  form#reply_form(onsubmit='createPost(this); return false;' novalidate=true)
     textarea(name='post' required=true placeholder='Сообщение' style='display: none')
     input(name='parent' required=false placeholder='(Опционально) № сообщения, на которое вы хотите ответить' type='text' style='display: none')
     button#send.button-outline(type='submit') Ответить
