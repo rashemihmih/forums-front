@@ -27,8 +27,7 @@ window.createPost = function (form) {
     }
 };
 
-window.reply = function (button) {
-    let id = button.innerHTML;
+window.reply = function (id) {
     let form = document.getElementById('reply_form');
     if (form.noValidate) {
         form.noValidate = false;
