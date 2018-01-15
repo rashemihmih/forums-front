@@ -15,23 +15,62 @@ window.logout = function () {
   }
 };
 
-window.deleteUser = function (form) {
-  let payload = {
-    login: form.elements['login'].value.trim()
-  };
-  let response = request.delete('/admin/user', payload);
+window.showUsers = function () {
+  let users = request.get('/admin/user/list');
+  if (users === undefined) {
+    alert('Не удалось загрузить пользователей');
+    return;
+  }
+  users = JSON.parse(users);
+  if (users.code !== 0){
+    alert(users.content);
+    return;
+  }
+  let html = '';
+  if (users.content.length === 0){
+    html = 'Ползователей нет'
+  } else {
+    users.content.forEach(user => {
+      html += `<p login="${user.login}"><button class="button button-clear" onclick="deleteUser('${user.login}');">${user.login}</button><br></p>\n`;
+    });
+  }
+  document.getElementById('userlist').innerHTML = html;
+}
+
+deleteUser = function (login) {
+  let response = request.delete('/admin/user', login);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
     return;
   }
   response = JSON.parse(response);
-  form.reset();
+  //form.reset();
   if (response.code === 0) {
     document.getElementById('deleteUserStatus').innerHTML = `Пользователь удален: ${response.content}`;
   } else {
     document.getElementById('deleteUserStatus').innerHTML = response.content;
   }
-};
+}
+
+// window.deleteUser = function (form) {
+//
+//
+//   let payload = {
+//     login: form.elements['login'].value.trim()
+//   };
+//   let response = request.delete('/admin/user', payload);
+//   if (response === undefined) {
+//     alert('Не удалось получить ответ от сервера');
+//     return;
+//   }
+//   response = JSON.parse(response);
+//   form.reset();
+//   if (response.code === 0) {
+//     document.getElementById('deleteUserStatus').innerHTML = `Пользователь удален: ${response.content}`;
+//   } else {
+//     document.getElementById('deleteUserStatus').innerHTML = response.content;
+//   }
+// };
 
 window.createForum = function (form) {
   let payload = {
