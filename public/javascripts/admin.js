@@ -70,7 +70,7 @@ window.makeModer = function (button) {
 
 window.unmakeModer = function (button) {
     let login = button.innerHTML;
-    let response = request.post('/admin/user/mod', login, true);
+    let response = request.post('/admin/user/mod', login, false);
     if (response === undefined) {
         alert('Не удалось лишить прав модератора');
         return;
