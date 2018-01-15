@@ -27,7 +27,7 @@ window.showUsers = function () {
   }
   let html = '';
   if (users.content.length === 0){
-    html = 'Ползователей нет'
+    html = 'Пользователей нет'
   } else {
     users.content.forEach(user => {
       html += `<p login="${user.login}">${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br><button class="button button-clear" onclick="makeModer('${user.login}');">Дать права модератора</button><br><button class="button button-clear" onclick="unmakeModer('${user.login}');">Лишить прав модератора</button><br></p>\n`;
@@ -56,7 +56,7 @@ window.makeModer = function (button) {
     let login = button.innerHTML;
     let response = request.post('/admin/user/mod', login, true);
     if (response === undefined) {
-        alert('Не удалось дать права модератора');
+        alert('Не удалось получить ответ от сервера');
         return;
     }
     response = JSON.parse(response);
@@ -72,7 +72,7 @@ window.unmakeModer = function (button) {
     let login = button.innerHTML;
     let response = request.post('/admin/user/mod', login, false);
     if (response === undefined) {
-        alert('Не удалось лишить прав модератора');
+        alert('Не удалось получить ответ от сервера');
         return;
     }
     response = JSON.parse(response);
