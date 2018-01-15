@@ -30,7 +30,7 @@ window.showUsers = function () {
     html = 'Ползователей нет'
   } else {
     users.content.forEach(user => {
-      html += `<p login="${user.login}"><button class="button button-clear" onclick="deleteUser('${user.login}');">${user.login}</button><br></p>\n`;
+      html += `<p login="${user.login}">${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br></p>\n`;
     });
   }
   document.getElementById('userlist').innerHTML = html;
