@@ -30,13 +30,14 @@ window.showUsers = function () {
     html = 'Ползователей нет'
   } else {
     users.content.forEach(user => {
-      html += `<p login="${user.login}">${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br></p>\n`;
+      html += `<p login="${user.login}">${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br><button class="button button-clear" onclick="makeModer('${user.login}');">Дать права модератора</button><br><button class="button button-clear" onclick="unmakeModer('${user.login}');">Лишить прав модератора</button><br></p>\n`;
     });
   }
   document.getElementById('userlist').innerHTML = html;
 }
 
-deleteUser = function (login) {
+window.deleteUser = function (button) {
+  let login = button.innerHTML;
   let response = request.delete('/admin/user', login);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
@@ -49,6 +50,38 @@ deleteUser = function (login) {
   } else {
     document.getElementById('deleteUserStatus').innerHTML = response.content;
   }
+}
+
+window.makeModer = function (button) {
+    let login = button.innerHTML;
+    let response = request.post('/admin/user/mod', login, true);
+    if (response === undefined) {
+        alert('Не удалось дать права модератора');
+        return;
+    }
+    response = JSON.parse(response);
+    //form.reset();
+    if (response.code === 0) {
+        document.getElementById('makeModerStatus').innerHTML = `Пользователь стал модератором: ${response.content}`;
+    } else {
+        document.getElementById('makeModerStatus').innerHTML = response.content;
+    }
+}
+
+window.unmakeModer = function (button) {
+    let login = button.innerHTML;
+    let response = request.post('/admin/user/mod', login, true);
+    if (response === undefined) {
+        alert('Не удалось лишить прав модератора');
+        return;
+    }
+    response = JSON.parse(response);
+    //form.reset();
+    if (response.code === 0) {
+        document.getElementById('unmakeModerStatus').innerHTML = `Пользователь лишился прав модератора: ${response.content}`;
+    } else {
+        document.getElementById('unmakeModerStatus').innerHTML = response.content;
+    }
 }
 
 // window.deleteUser = function (form) {
