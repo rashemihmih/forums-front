@@ -46,8 +46,10 @@ window.deleteUser = function (button) {
   response = JSON.parse(response);
   //form.reset();
   if (response.code === 0) {
+    alert('Пользователь удален');
     document.getElementById('deleteUserStatus').innerHTML = `Пользователь удален: ${response.content}`;
   } else {
+    alert('Не удалось удалить пользователя');
     document.getElementById('deleteUserStatus').innerHTML = response.content;
   }
 }
@@ -62,8 +64,10 @@ window.makeModer = function (button) {
     response = JSON.parse(response);
     //form.reset();
     if (response.code === 0) {
+        alert('Пользователь получил права модератора');
         document.getElementById('makeModerStatus').innerHTML = `Пользователь стал модератором: ${response.content}`;
     } else {
+        alert('Пользователь не смог получить права модератора');
         document.getElementById('makeModerStatus').innerHTML = response.content;
     }
 }
@@ -78,8 +82,10 @@ window.unmakeModer = function (button) {
     response = JSON.parse(response);
     //form.reset();
     if (response.code === 0) {
+        alert('Пользователь лишился прав модератора');
         document.getElementById('unmakeModerStatus').innerHTML = `Пользователь лишился прав модератора: ${response.content}`;
     } else {
+        alert('Не удалось лишить пользователя прав модератора прав модератора');
         document.getElementById('unmakeModerStatus').innerHTML = response.content;
     }
 }
