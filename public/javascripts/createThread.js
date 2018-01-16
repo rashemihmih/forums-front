@@ -18,3 +18,18 @@ window.createThread = function (form) {
     alert(response.content);
   }
 };
+window.deleteT = function (id) {
+    let payload =  {_id: id };
+    let response = request.delete('/admin/thread', payload);
+    if (response === undefined) {
+        alert('Не удалось получить ответ от сервера');
+        return;
+    }
+    response = JSON.parse(response);
+    location.reload();
+    if (response.code === 0) {
+        document.getElementById('deleteThreadStatus').innerHTML = `Тема удалена: №${response.content}`;
+    } else {
+        document.getElementById('deleteThreadStatus').innerHTML = response.content;
+    }
+};

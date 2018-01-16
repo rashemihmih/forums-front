@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 let request = require('./request');
-
+let adses = request.get('/admin/session');
 let forum = document.getElementById('title').innerHTML;
 let page = parseInt(document.getElementById('page').innerHTML, 10);
 let limit = 50;
@@ -19,10 +19,18 @@ let html = '';
 if (threads.content.length === 0) {
   html = 'Пусто'
 } else {
+    adses = JSON.parse(adses);
+    if (adses.code === 0) {
   threads.content.forEach(thread => {
-    let title = thread.title;
-    html += `<p><a href="${'/thread/' + thread._id + '/page1'}">${thread.title}</a></p>\n`;
-  });
+      let title = thread.title;
+          html += `<p id="${thread._id}"><a href="${'/thread/' + thread._id + '/page1'}">${thread.title}</a><button class="button button-clear" onclick="deleteT('${thread._id}');">Удалить</button></p>\n`;});
+  } else {
+            threads.content.forEach(thread => {
+                let title = thread.title;
+                html += `<p><a href="${'/thread/' + thread._id + '/page1'}">${thread.title}</a></p>\n`;});
+        }
+
+
 }
 if (threads.content.length < limit) {
   document.getElementById('nextpage').style = 'display: none';
