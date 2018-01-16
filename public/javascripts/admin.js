@@ -34,7 +34,7 @@ window.showUsers = function () {
     });
   }
   document.getElementById('userlist').innerHTML = html;
-}
+};
 
 window.deleteUser = function (login) {
   let data = {
@@ -46,13 +46,12 @@ window.deleteUser = function (login) {
     return;
   }
   response = JSON.parse(response);
-  //form.reset();
   if (response.code === 0) {
     alert('Пользователь удален');
   } else {
-    alert('Не удалось удалить пользователя');
+    alert(response.content);
   }
-}
+};
 
 window.makeModer = function (login) {
     let data = {
@@ -65,13 +64,12 @@ window.makeModer = function (login) {
         return;
     }
     response = JSON.parse(response);
-    //form.reset();
     if (response.code === 0) {
         alert('Пользователь получил права модератора');
     } else {
-        alert('Пользователь не смог получить права модератора');
+        alert(response.content);
     }
-}
+};
 
 window.unmakeModer = function (login) {
     let data = {
@@ -84,13 +82,12 @@ window.unmakeModer = function (login) {
         return;
     }
     response = JSON.parse(response);
-    //form.reset();
     if (response.code === 0) {
         alert('Пользователь лишился прав модератора');
     } else {
-        alert('Не удалось лишить пользователя прав модератора прав модератора');
+        alert(response.content);
     }
-}
+};
 
 // window.deleteUser = function (form) {
 //

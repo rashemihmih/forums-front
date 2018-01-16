@@ -4,13 +4,13 @@ let request = require('./request');
 let threadId = document.getElementById('id').innerHTML;
 let thread = request.get(`/api/thread?_id=${threadId}`);
 if (thread === undefined) {
-  alert('Не удалось загрузить посты');
-  return;
+    alert('Не удалось загрузить посты');
+    return;
 }
 thread = JSON.parse(thread);
 if (thread.code !== 0) {
-  alert(thread.content);
-  return;
+    alert(thread.content);
+    return;
 }
 document.getElementById('title').innerHTML = thread.content.title;
 document.getElementById('user').innerHTML = thread.content.user;
@@ -25,27 +25,26 @@ let limit = 50;
 let offset = (page - 1) * limit;
 let posts = request.get(`/api/post/list?thread=${threadId}&offset=${offset}&limit=${limit}`);
 if (posts === undefined) {
-  alert('Не удалось загрузить посты');
-  return;
+    alert('Не удалось загрузить посты');
+    return;
 }
 posts = JSON.parse(posts);
 if (posts.code !== 0) {
-  alert(posts.content);
-  return;
+    alert(posts.content);
+    return;
 }
 let html = '';
 if (posts.content.length === 0) {
-  html = 'Ответов нет'
+    html = 'Ответов нет'
 } else {
-  posts.content.forEach(post => {
-    html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply(this);">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
-  });
+    posts.content.forEach(post => {
+        html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+    });
 }
 if (posts.content.length < limit) {
-  document.getElementById('nextpage').style = 'display: none';
+    document.getElementById('nextpage').style = 'display: none';
 }
 document.getElementById('list').innerHTML = html;
-
 },{"./request":2}],2:[function(require,module,exports){
 let backend = 'https://mzforums-backend-js.herokuapp.com';
 

@@ -28,29 +28,67 @@ window.showUsers = function () {
   }
   let html = '';
   if (users.content.length === 0){
-    html = 'Ползователей нет'
+    html = 'Пользователей нет'
   } else {
     users.content.forEach(user => {
-      html += `<p login="${user.login}"><button class="button button-clear" onclick="deleteUser('${user.login}');">${user.login}</button><br></p>\n`;
+      html += `<p>${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br><button class="button button-clear" onclick="makeModer('${user.login}');">Дать права модератора</button><br><button class="button button-clear" onclick="unmakeModer('${user.login}');">Лишить прав модератора</button><br></p>\n`;
     });
   }
   document.getElementById('userlist').innerHTML = html;
-}
+};
 
-deleteUser = function (login) {
-  let response = request.delete('/admin/user', login);
+window.deleteUser = function (login) {
+  let data = {
+      login: login
+  };
+  let response = request.delete('/admin/user', data);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
     return;
   }
   response = JSON.parse(response);
-  //form.reset();
   if (response.code === 0) {
-    document.getElementById('deleteUserStatus').innerHTML = `Пользователь удален: ${response.content}`;
+    alert('Пользователь удален');
   } else {
-    document.getElementById('deleteUserStatus').innerHTML = response.content;
+    alert(response.content);
   }
-}
+};
+
+window.makeModer = function (login) {
+    let data = {
+        login: login,
+        mod: true
+    };
+    let response = request.post('/admin/user/mod', data);
+    if (response === undefined) {
+        alert('Не удалось получить ответ от сервера');
+        return;
+    }
+    response = JSON.parse(response);
+    if (response.code === 0) {
+        alert('Пользователь получил права модератора');
+    } else {
+        alert(response.content);
+    }
+};
+
+window.unmakeModer = function (login) {
+    let data = {
+        login: login,
+        mod: false
+    };
+    let response = request.post('/admin/user/mod', data);
+    if (response === undefined) {
+        alert('Не удалось получить ответ от сервера');
+        return;
+    }
+    response = JSON.parse(response);
+    if (response.code === 0) {
+        alert('Пользователь лишился прав модератора');
+    } else {
+        alert(response.content);
+    }
+};
 
 // window.deleteUser = function (form) {
 //
