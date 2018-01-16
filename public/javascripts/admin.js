@@ -30,14 +30,17 @@ window.showUsers = function () {
     html = 'Пользователей нет'
   } else {
     users.content.forEach(user => {
-      html += `<p login="${user.login}">${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br><button class="button button-clear" onclick="makeModer('${user.login}');">Дать права модератора</button><br><button class="button button-clear" onclick="unmakeModer('${user.login}');">Лишить прав модератора</button><br></p>\n`;
+      html += `<p>${user.login}<button class="button button-clear" onclick="deleteUser('${user.login}');">Удалить</button><br><button class="button button-clear" onclick="makeModer('${user.login}');">Дать права модератора</button><br><button class="button button-clear" onclick="unmakeModer('${user.login}');">Лишить прав модератора</button><br></p>\n`;
     });
   }
   document.getElementById('userlist').innerHTML = html;
 }
 
 window.deleteUser = function (login) {
-  let response = request.delete('/admin/user', login);
+  let data = {
+      login: login
+  };
+  let response = request.delete('/admin/user', data);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
     return;
@@ -46,10 +49,8 @@ window.deleteUser = function (login) {
   //form.reset();
   if (response.code === 0) {
     alert('Пользователь удален');
-    document.getElementById('deleteUserStatus').innerHTML = `Пользователь удален: ${response.content}`;
   } else {
     alert('Не удалось удалить пользователя');
-    document.getElementById('deleteUserStatus').innerHTML = response.content;
   }
 }
 
@@ -67,10 +68,8 @@ window.makeModer = function (login) {
     //form.reset();
     if (response.code === 0) {
         alert('Пользователь получил права модератора');
-        document.getElementById('makeModerStatus').innerHTML = `Пользователь стал модератором: ${response.content}`;
     } else {
         alert('Пользователь не смог получить права модератора');
-        document.getElementById('makeModerStatus').innerHTML = response.content;
     }
 }
 
@@ -88,10 +87,8 @@ window.unmakeModer = function (login) {
     //form.reset();
     if (response.code === 0) {
         alert('Пользователь лишился прав модератора');
-        document.getElementById('unmakeModerStatus').innerHTML = `Пользователь лишился прав модератора: ${response.content}`;
     } else {
         alert('Не удалось лишить пользователя прав модератора прав модератора');
-        document.getElementById('unmakeModerStatus').innerHTML = response.content;
     }
 }
 
