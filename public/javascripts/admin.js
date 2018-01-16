@@ -36,8 +36,7 @@ window.showUsers = function () {
   document.getElementById('userlist').innerHTML = html;
 }
 
-window.deleteUser = function (button) {
-  let login = button.innerHTML;
+window.deleteUser = function (login) {
   let response = request.delete('/admin/user', login);
   if (response === undefined) {
     alert('Не удалось получить ответ от сервера');
@@ -54,9 +53,12 @@ window.deleteUser = function (button) {
   }
 }
 
-window.makeModer = function (button) {
-    let login = button.innerHTML;
-    let response = request.post('/admin/user/mod', login, true);
+window.makeModer = function (login) {
+    let data = {
+        login: login,
+        mod: true
+    };
+    let response = request.post('/admin/user/mod', data);
     if (response === undefined) {
         alert('Не удалось получить ответ от сервера');
         return;
@@ -72,9 +74,12 @@ window.makeModer = function (button) {
     }
 }
 
-window.unmakeModer = function (button) {
-    let login = button.innerHTML;
-    let response = request.post('/admin/user/mod', login, false);
+window.unmakeModer = function (login) {
+    let data = {
+        login: login,
+        mod: false
+    };
+    let response = request.post('/admin/user/mod', data);
     if (response === undefined) {
         alert('Не удалось получить ответ от сервера');
         return;
