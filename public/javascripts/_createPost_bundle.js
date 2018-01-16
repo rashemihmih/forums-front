@@ -40,24 +40,25 @@ window.reply = function (id) {
     location.hash = '#reply_form';
     location.hash = '';
 };
-
 window.deleteP = function (id) {
-    let payload = {_id: id };
+    let payload = {_id: id } ;
     let response = request.delete('/admin/post', payload);
     if (response === undefined) {
         alert('Не удалось получить ответ от сервера');
         return;
-        }
-        response = JSON.parse(response);
+    }
+    response = JSON.parse(response);
     location.reload();
     if (response.code === 0) {
         document.getElementById('deletePostStatus').innerHTML = `Пост удален: №${response.content}`;
-        } else {
+    } else {
         document.getElementById('deletePostStatus').innerHTML = response.content;
-        }
+    }
 };
-    },{"./request":2}],2:[function(require,module,exports){
-        let backend = 'https://mzforums-backend-js.herokuapp.com';
+
+},{"./request":2}],2:[function(require,module,exports){
+let backend = 'https://mzforums-backend-js.herokuapp.com';
+
 exports.get = function (url) {
   let xhr = new XMLHttpRequest();
   xhr.open('GET', backend + url, false);

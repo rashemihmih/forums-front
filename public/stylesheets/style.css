@@ -10,3 +10,18 @@ a {
 .forums__margin-left {
   margin-left: 10px;
 }
+
+.forums__button-inline {
+  margin-left: 10px;
+  margin-bottom: 0 !important;
+}
+
+.forums__no-padding {
+  padding: 0 !important;
+}
+
+.forums__post {
+  background-color: #f5f2f9;
+  margin: 1rem;
+  padding: 1rem;
+}

@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 let request = require('./request');
 let adses = request.get('/admin/session');
-
 let threadId = document.getElementById('id').innerHTML;
 let thread = request.get(`/api/thread?_id=${threadId}`);
 if (thread === undefined) {
@@ -41,17 +40,14 @@ if (posts.content.length === 0) {
     adses = JSON.parse(adses);
     if (adses.code === 0) {
         posts.content.forEach(post => {
-            html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><button class="button button-clear" onclick="deleteP('${post._id}');">Удалить</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><button class="button button-outline forums__button-inline" onclick="deleteP('${post._id}');">Удалить</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
         });
     } else {
         posts.content.forEach(post => {
-            html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
         });
     }
 }
-
-
-
 if (posts.content.length < limit) {
   document.getElementById('nextpage').style = 'display: none';
 }
