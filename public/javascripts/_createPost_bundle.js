@@ -49,6 +49,7 @@ window.deleteP = function (id) {
         return;
         }
         response = JSON.parse(response);
+    location.reload();
     if (response.code === 0) {
         document.getElementById('deletePostStatus').innerHTML = `Пост удален: №${response.content}`;
         } else {
