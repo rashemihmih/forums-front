@@ -39,3 +39,17 @@ window.reply = function (id) {
     location.hash = '#reply_form';
     location.hash = '';
 };
+window.deleteP = function (id) {
+    let payload = {_id: id } ;
+    let response = request.delete('/admin/post', payload);
+    if (response === undefined) {
+        alert('Не удалось получить ответ от сервера');
+        return;
+    }
+    response = JSON.parse(response);
+    if (response.code === 0) {
+        document.getElementById('deletePostStatus').innerHTML = `Пост удален: №${response.content}`;
+    } else {
+        document.getElementById('deletePostStatus').innerHTML = response.content;
+    }
+};

@@ -1,5 +1,5 @@
 let request = require('./request');
-
+let adses = request.get('/admin/session');
 let threadId = document.getElementById('id').innerHTML;
 let thread = request.get(`/api/thread?_id=${threadId}`);
 if (thread === undefined) {
@@ -36,9 +36,16 @@ let html = '';
 if (posts.content.length === 0) {
   html = 'Ответов нет'
 } else {
-  posts.content.forEach(post => {
-    html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
-  });
+    adses = JSON.parse(adses);
+    if (adses.code === 0) {
+        posts.content.forEach(post => {
+            html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><button class="button button-clear" onclick="deleteP('${post._id}');">Удалить</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+        });
+    } else {
+        posts.content.forEach(post => {
+            html += `<p id="${post._id}">${post.creationTime}<button class="button button-clear" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+        });
+    }
 }
 if (posts.content.length < limit) {
   document.getElementById('nextpage').style = 'display: none';
