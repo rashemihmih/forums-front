@@ -1,0 +1,17 @@
+extends layout
+
+block topscripts
+  script(src='/javascripts/_commonSession_bundle.js')
+
+block content
+  include topbar
+  h1#title= title
+  a.button.button-outline(href='new') Создать тему
+  hr
+  div#list
+  hr
+  include pagination
+
+block scripts
+  script(src='/javascripts/_listThreads_bundle.js')
+  script(src='/javascripts/_createThread_bundle.js')
