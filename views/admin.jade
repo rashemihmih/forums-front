@@ -7,11 +7,21 @@ block content
   div(align='right')
     span#username
     button.button-outline.forums__margin-left(onclick='logout()') Выйти
-  h4 Удалить пользователя
-  form(onsubmit='deleteUser(this); return false;')
-    input(required=true placeholder='Логин пользователя' name='login' type='text' maxlength=50)
-    button.button-outline(type='submit') Удалить пользователя
-    span#deleteUserStatus.forums__margin-left
+
+
+  div(align='left')
+    div#userlist
+    button.button-outline.forums__margin-left(onclick='showUsers()') Вывести всех пользователей
+  //div(align='left')
+  //  h4 Удалить пользователя
+  //  button.button-outline(type='submit') Удалить пользователя
+  //  span#deleteUserStatus.forums__margin-left
+    //div#list
+
+  //form(onsubmit='deleteUser(this); return false;')
+  //  input(required=true placeholder='Логин пользователя' name='login' type='text' maxlength=50)
+  //  button.button-outline(type='submit') Удалить пользователя
+  //  span#deleteUserStatus.forums__margin-left
   hr
   h4 Создать раздел
   form(onsubmit='createForum(this); return false;')
