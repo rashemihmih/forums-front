@@ -39,11 +39,11 @@ if (posts.content.length === 0) {
     adses = JSON.parse(adses);
     if (adses.code === 0) {
         posts.content.forEach(post => {
-            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><button class="button button-outline forums__button-inline" onclick="deleteP('${post._id}');">Удалить</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><button class="button button-outline forums__button-inline" onclick="deleteP('${post._id}');">Удалить</button><br>${post.parent ? 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>' : ''}${post.user}:<br>${post.message}</p>\n`;
         });
     } else {
         posts.content.forEach(post => {
-            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent === '' ? '' : 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>'}${post.user}:<br>${post.message}</p>\n`;
+            html += `<p class="forums__post" id="${post._id}">${post.creationTime}<button class="button button-clear forums__button-inline forums__no-padding" onclick="reply('${post._id}');">${post._id}</button><br>${post.parent ? 'В ответ на <a class="button button-clear forums__button-inline forums__no-padding" href=#' + post.parent + '>' + post.parent + '</a><br>' : ''}${post.user}:<br>${post.message}</p>\n`;
         });
     }
 }
